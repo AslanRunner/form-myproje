@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        #sonuc {
+            margin-top: 30px;
+            padding: 10px;
+            border: 1px solid #888;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <form id="kullaniciFormu">        
+        <label for="isim">Ad:</label>
+        <input type="text" name="isim" id="isim" placeholder="Melisa">
+        <br><br>
+
+        <label for="soyad">Soyad:</label>
+        <input type="text" name="soyad" id="soyad" placeholder="Söğüt">
+        <br><br>
+
+        <label for="sifre">Şifre:</label>
+        <input type="password" name="sifre" id="sifre" placeholder="*****">
+        <br><br>
+
+        <label for="eposta">eposta:</label>
+        <input type="email" name="eposta" id="eposta" placeholder="melissa05@gmail.com">
+        <br><br>
+
+        <label for="telefon">Telefon:</label> 
+        <input type="tel" name="telefon" id="telefon" placeholder="(555)-555-5555">
+        <br><br>
+
+        <label for="Tarih">Doğum Tarihi:</label>
+        <input type="date" name="Tarih" id="Tarih">
+        <br><br>
+    
+        <label for="kardes">Kardeş Sayısı:</label>
+        <input type="number" name="kardes" id="kardes" min="0" max="30">
+        <br><br>
+        
+        <label for="cinsiyet">Cinsiyet:</label>
+        <label for="kadın">Kadın</label>
+        <input type="radio" name="cinsiyet" id="kadın" value="Kadın">
+        <label for="erkek">Erkek</label>
+        <input type="radio" name="cinsiyet" id="erkek" value="Erkek">
+        <br><br>
+
+        <label for="sigorta">Sigorta:</label>
+        <select name="sigorta" id="sigorta">
+            <option value="SSK">SSK</option>
+            <option value="Bağkur">Bağkur</option>
+            <option value="Emekli Sandığı">Emekli Sandığı</option>
+        </select>
+        <br><br>
+
+        <input type="reset" value="Temizle">
+        <input type="submit" value="Gönder">
+    </form>
+
+    <div id="sonuc"></div>
+
+    <script>
+        document.getElementById("kullaniciFormu").addEventListener("submit", function(event){
+            event.preventDefault(); 
+
+            const isim = document.getElementById("isim").value;
+            const soyad = document.getElementById("soyad").value;
+            const sifre = document.getElementById("sifre").value;
+            const eposta = document.getElementById("eposta").value;
+            const telefon = document.getElementById("telefon").value;
+            const tarih = document.getElementById("Tarih").value;
+            const kardes = document.getElementById("kardes").value;
+            const sigorta = document.getElementById("sigorta").value;
+
+            const cinsiyetRadio = document.querySelector('input[name="cinsiyet"]:checked');
+            const cinsiyet = cinsiyetRadio ? cinsiyetRadio.value : "Belirtilmedi";
+
+            const sonucDiv = document.getElementById("sonuc");
+
+            /*if (sifre != "Aslan"){
+                sonucDiv.innerHTML = `  
+                <p style="color:red;"><strong>Şifre Yanlış</strong> <br> Lütfen formu tekrar doldurunuz. <br><br>NOT : Şifreyi doldururken kalbinizi dikkate alınız!</p>
+                `;
+                return;
+            }*/
+
+            if (sifre !== "Aslan") {
+                alert("Şifre yanlış! Lütfen formu tekrar doldurunuz.");
+                 return;
+            }       
+
+
+            sonucDiv.innerHTML = `
+                <h3>Form Sonuçları</h3>
+                <p><strong>Ad:</strong> ${isim}</p>
+                <p><strong>Soyad:</strong> ${soyad}</p>
+                <p><strong>Şifre:</strong> ${sifre}</p>
+                <p><strong>E-posta:</strong> ${eposta}</p>
+                <p><strong>Telefon:</strong> ${telefon}</p>
+                <p><strong>Doğum Tarihi:</strong> ${tarih}</p>
+                <p><strong>Kardeş Sayısı:</strong> ${kardes}</p>
+                <p><strong>Cinsiyet:</strong> ${cinsiyet}</p>
+                <p><strong>Sigorta Türü:</strong> ${sigorta}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
